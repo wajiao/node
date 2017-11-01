@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<p>home</p>
+<div id = "ajax">ajax</div>
+<form action = "/post" method = "post" id = "form">
+	<p>
+		<textarea name="textarea" cols="30" rows="10"></textarea>
+	</p>
+	<p>
+		<input type="submit" >
+	</p>
+</form>
+<script type="text/javascript">
+	var ajax = $("#ajax");
+
+	ajax.onclick = function(){
+		sendAjax();
+	}
+	function sendAjax(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				// var result = xhr.responseText;
+				var result = JSON.parse(xhr.responseText);
+				console.log(result)
+			}
+		}
+		xhr.open("get","/get?value=1",true);
+		xhr.send();
+
+	}
+
+	function $(selector){
+		return document.querySelector(selector)
+	}
+</script>
+</body>
+</html>
